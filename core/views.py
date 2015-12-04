@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from .models import *
 from django.views.generic import DetailView
 from django.views.generic import UpdateView
+from django.views.generic import DeleteView
 # Create your views here.
 class Home(TemplateView):
         template_name = "home.html"
@@ -26,6 +27,11 @@ class QuestionListView(ListView):
         
 class QuestionDetailView(DetailView):
         model = Question
+        
+class QuestionDeleteView(DeleteView):
+        model = Question
+        template_name = 'question/question_confirm_delete.html'
+        success_url = reverse_lazy('question_list')
         template_name = 'question/question_detail.html'
         
 class QuestionUpdateView(UpdateView):
